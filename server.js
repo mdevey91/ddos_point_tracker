@@ -22,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'client')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+// routes
 app.use('/', index);
 app.use('/api', tasks);
 
@@ -32,6 +33,7 @@ app.listen(port, () => {
 // open connection to the database
 mongoose.connect('mongodb://mdevey:mdevey@ds121960.mlab.com:21960/ddos_point_tracker');
 
+// check connection
 mongoose.connection.on('connected', () => {
     console.log("connected to the database!");
 });

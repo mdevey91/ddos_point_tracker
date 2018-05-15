@@ -50,7 +50,7 @@ router.get('/get/numberbyperson', (req, res, next) => {
     });
 })
 
-router.get('/get/distinctnames', (req, res, next) => {
+router.get('/get/pointsbyperson', (req, res, next) => {
     Point.getDistinctPoints((err, data) => {
         if (err) {
             console.log('error: ', err);
