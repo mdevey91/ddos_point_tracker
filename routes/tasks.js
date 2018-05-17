@@ -22,7 +22,7 @@ router.post('/add/point', (req, res, next) => {
     });
 })
 
-router.get('/get/allpoints', (req, res, next) => {
+router.get('/get/all_points', (req, res, next) => {
     Point.find({}, (err, data) => {
         if (err) {
             res.json({success: false, msg: 'Failed to get points'});
@@ -39,7 +39,7 @@ router.get('/get/allpoints', (req, res, next) => {
     });
 })
 
-router.get('/get/numberbyperson', (req, res, next) => {
+router.get('/get/number_by_person', (req, res, next) => {
     Point.find({}, (err, data) => {
         if (err) {
             res.json({success: false, msg: 'Failed to get points'});
@@ -50,7 +50,7 @@ router.get('/get/numberbyperson', (req, res, next) => {
     });
 })
 
-router.get('/get/pointsbyperson', (req, res, next) => {
+router.get('/get/points_by_person', (req, res, next) => {
     Point.getDistinctPoints((err, data) => {
         if (err) {
             console.log('error: ', err);

@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_ROOT = '/api';
 
 export function getUserPoints() {
-    return axios.get(`${API_ROOT}/get/pointsbyperson`);
+    return axios.get(`${API_ROOT}/get/points_by_person`);
 }
 
 export function addPoint(name, date) {
