@@ -1,17 +1,36 @@
-import { getUserPoints, addPoint } from './api';
-import toast from 'toastr';
+// import { getUserPoints, addPoint } from './api';
+// import toast from 'toastr';
+// const toast = require('toastr');
+
 
 var app = new Vue({
-    el: '#points',
+    el: '#app',
+    components: {
+        toast: () => import('toastr'),
+        getUserPoints: () => import('./api'),
+    },
     data: {
-        user_points: [],
+        message: 'Hello, World!',
+        user_points: [
+        {
+            _id: 1,
+            name: "Curtis Jensen",
+            points: 2,
+        },
+        {
+            _id: 2,
+            name: 'Matt Devey',
+            points: 2,
+        },
+    ],
     },
     mounted() {
-        getUserPoints().then(res => {
-            this.user_points = res;
-        }).catch(error => {
-            toast.error('We could not get user points', {autoClose: true});
-        });
+        console.log('was mounted!');
+        // getUserPoints().then(res => {
+        //     this.user_points = res;
+        // }).catch(error => {
+        //     // toast.error('We could not get user points', {autoClose: true});
+        // });
     },
 });
 

@@ -13,7 +13,12 @@
     <p>This be working. ARRRRR!</p>
     
     <div id="app">
-        <p>{{ message }}</p>
+        {{ message }}
+        <user-point
+            v-for="item in user_points"
+            v-bind:point="item"
+            v-bind:key="item._id">
+        </user-point>
     </div>
 </body>
     <script src="../js/index.js" type="text/javascript"></script>

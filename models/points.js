@@ -41,7 +41,3 @@ module.exports.getDistinctPoints = (callback) => {
         }},
     ], callback)
 }
-
-// module.exports.getAllPoints = (callback) => {
-//     newPoint.find({}, {}, callback)
-// }
