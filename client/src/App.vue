@@ -1,7 +1,10 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+    <p>Is it working?</p>
+    <Point
+      v-for="point_obj in points"
+      v-bind="point_obj"
+      v-bind:key="point_obj._id"/>
   </div>
 </template>
 
@@ -12,9 +15,33 @@ import Point from './components/Point'
 export default {
   name: 'App',
   components: {
-    HelloWorld,
     Point
-  }
+  },
+  data () {
+        return {
+            points: [
+              {
+                _id: 1,
+                name: 'matt',
+                points: 2
+              },
+              {
+                _id: 2,
+                name: 'curtis',
+                points: 1
+              }
+            ]
+        }
+    },
+    mounted () {
+        // this.getPoints()
+    },
+    methods: {
+        async getPoints () {
+            const response = await getPoints();
+            this.points = response;
+        },
+    }
 }
 </script>
 
