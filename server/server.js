@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 var index = require('./routes/index');
 var tasks = require('./routes/tasks');
@@ -21,6 +22,9 @@ app.use(express.static(path.join(__dirname, 'client')));
 // Body Parser MW
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+
+// CORs
+app.use(cors());
 
 // routes
 app.use('/', index);

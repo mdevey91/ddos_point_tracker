@@ -1,9 +1,12 @@
-import api from './Api';
+import Api from '@/services/Api'
 
-export function getPoints() {
-    api.get('/api/get/number_by_person');
-}
-
-export function addPoints(name) {
-    api.post('/api/add/points', {name: name});
+export default {
+  addPoints(name) {
+    return Api().post('/api/add/points', {
+      'name': name
+    });
+  },
+  getPoints() {
+    return Api().get('/api/get/number_by_person');
+  }
 }

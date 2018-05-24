@@ -1,21 +1,26 @@
 <template>
-    <div>
-        <h1>{{ point_obj.name }}</h1>
-        <h1>{{ point_obj.points }}</h1>
-        <button v-on:click="addPoint(point_obj.name)">Add Point</button>
+    <div class="card">
+        <div class="card-content">
+            <h3 class="name">{{ point_obj.name }}</h3>
+            <span class="points">{{ point_obj.points }}</span>
+            <button
+                v-on:click="addPoint(point_obj.name)"
+                class="btn-floating btn-large waves-effect waves-light red"
+            ><i class="material-icons">add</i></button>
+        </div>
     </div>
 </template>
 
 <script>
-import { getPoints, addPoints } from '../services/PointService';
+import api from '../services/PointService';
 import toast from 'toastr';
 export default {
     name: 'Point',
     props: ['point_obj'],
     methods: {
-        addPoint () {
+        addPoint (name) {
             //disable button with loading icon
-            addPoints(name).then(res => {
+            api.addPoints(name).then(res => {
                 point_obj.points++;
                 //enable button
             }).catch(error => {
@@ -26,3 +31,20 @@ export default {
     }
 }
 </script>
+
+<style>
+.card {
+  /* margin-left: 10px;
+  margin-right: 10px; */
+}
+.card .name {
+  /* font-weight: 200;
+  font-size: 3em; */
+}
+.card .points {
+  display: block;
+  font-weight: 600;
+  font-size: 5em;
+}
+</style>
+
