@@ -3,7 +3,7 @@
     <p>Is it working?</p>
     <Point
       v-for="point_obj in points"
-      v-bind="point_obj"
+      v-bind:point_obj="point_obj"
       v-bind:key="point_obj._id"/>
   </div>
 </template>
