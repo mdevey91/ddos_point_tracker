@@ -1,32 +1,25 @@
 <template>
-    
+    <div>
+        <h1>{{ point_obj.name }}</h1>
+        <h1>{{ point_obj.points }}</h1>
+        <button v-on:click="addPoint(point_obj.name)">Add Point</button>
+    </div>
 </template>
 
 <script>
 import { getPoints, addPoints } from '../services/PointService';
+import toast from 'toastr';
 export default {
-    props: [point_obj],
     name: 'Point',
-    data () {
-        return {
-            points: []
-        }
-    },
-    mounted () {
-        this.getPoints()
-    },
+    props: ['point_obj'],
     methods: {
-        async getPoints () {
-            const response = await getPoints();
-            this.points = response;
-        },
-        onClick () {
+        addPoint () {
             //disable button with loading icon
-            getPoints(point_obj.name).then(res => {
+            addPoints(name).then(res => {
                 point_obj.points++;
                 //enable button
             }).catch(error => {
-                //display error message
+                toast.error('There was an error adding a point')
                 //enable button
             })
         }
