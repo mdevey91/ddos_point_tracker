@@ -23,18 +23,7 @@ export default {
   },
   data () {
     return {
-      points: [
-        {
-          _id: 1,
-          name: 'matt',
-          points: 2
-        },
-        {
-          _id: 2,
-          name: 'curtis',
-          points: 1
-        },
-      ],
+      points: [],
       team_name: 'DDoS Team',
     }
   },
@@ -43,9 +32,10 @@ export default {
   },
   methods: {
     async getPoints () {
+      console.log('get points was called');
       const response = await api.getPoints();
-      debugger;
       this.points = response.data;
+      console.log(this.points);
     },
   }
 }

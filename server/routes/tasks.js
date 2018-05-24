@@ -10,7 +10,6 @@ router.get('/tasks', (req, res, next) => {
 router.post('/add/point', (req, res, next) => {
     let newPoint = new Point({
         name: req.body.name,
-        date: req.body.date,
     });
     Point.addPoint(newPoint, (err, data) => {
         if (err) {
