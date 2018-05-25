@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-import Point from './components/Point';
-import api from './services/PointService';
+import HelloWorld from '../components/HelloWorld';
+import Point from '../components/Point';
+import api from '../services/PointService';
 
 export default {
   name: 'App',
@@ -31,7 +31,7 @@ export default {
     this.getPoints();
   },
   methods: {
-    async getPoints () {
+    async getPoints() {
       console.log('get points was called');
       const response = await api.getPoints();
       this.points = response.data;
