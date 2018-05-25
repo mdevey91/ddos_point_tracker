@@ -4,7 +4,7 @@
             <h3 class="name">{{ point_obj.name }}</h3>
             <span class="points">{{ point_obj.points }}</span>
             <button
-                v-on:click="addPoint(point_obj.name)"
+                v-on:click="addPoint($event, point_obj.name)"
                 class="btn-floating btn-large waves-effect waves-light red"
             ><i class="material-icons">add</i></button>
         </div>
@@ -18,14 +18,20 @@ export default {
     name: 'Point',
     props: ['point_obj'],
     methods: {
-        addPoint (name) {
+        addPoint (event, name) {
             //disable button with loading icon
+            event.preventDefault();
+            const button = event.target.parentElement;
+
+            button.setAttribute('disabled', 'true');
             api.addPoints(name).then(res => {
-                point_obj.points++;
+                this.point_obj.points++;
                 //enable button
+                button.removeAttribute('disabled');
             }).catch(error => {
                 toast.error('There was an error adding a point')
                 //enable button
+                button.removeAttribute('disabled');
             })
         }
     }
