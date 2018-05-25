@@ -25,6 +25,7 @@ export default {
 
             button.setAttribute('disabled', 'true');
             api.addPoints(name).then(res => {
+                console.log("add points was called");
                 this.point_obj.points++;
                 //enable button
                 button.removeAttribute('disabled');
