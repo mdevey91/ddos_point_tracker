@@ -21,7 +21,8 @@ export default {
         addPoint (name) {
             //disable button with loading icon
             api.addPoints(name).then(res => {
-                point_obj.points++;
+                console.log("add points was called");
+                this.point_obj.points++;
                 //enable button
             }).catch(error => {
                 toast.error('There was an error adding a point')
