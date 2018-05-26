@@ -6,8 +6,8 @@ const pointSchema = mongoose.Schema({
         type: String,
         lowercase: true // Always converts to lowercase
     },
-    date: { 
-        type: Date, 
+    date: {
+        type: Date,
         default: Date.now
     },
 
@@ -15,11 +15,14 @@ const pointSchema = mongoose.Schema({
 
 const Point = module.exports = mongoose.model('Point', pointSchema);
 
-module.exports.getPointById = (id, callback) => {
-    Point.findById(id, callback);
+module.exports.getPointsById = (id, callback) => {
+    console.log('getPointsById: ', id);
+    // Point.findById(id, callback);
+    const query = {_id: id};
+    Point.find(query, callback);
 }
 
-module.exports.getPointByName = (name, callback) => {
+module.exports.getPointsByName = (name, callback) => {
     const query = {name: name};
     Point.find(query, callback);
 }

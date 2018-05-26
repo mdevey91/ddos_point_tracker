@@ -15,38 +15,46 @@
 import api from '../services/PointService';
 import toast from 'toastr';
 export default {
-    name: 'Point',
-    props: ['point_obj'],
-    methods: {
-        addPoint (event, name) {
-            //disable button with loading icon
-            event.preventDefault();
-            const button = event.target.parentElement;
+  name: 'Point',
+  props: ['point_obj'],
+  methods: {
+    addPoint (event, name) {
+      //disable button with loading icon
+      event.preventDefault();
+      const button = event.target.parentElement;
 
-            button.setAttribute('disabled', 'true');
-            api.addPoints(name).then(res => {
-                console.log("add points was called");
-                this.point_obj.points++;
-                //enable button
-                button.removeAttribute('disabled');
-            }).catch(error => {
-                toast.error('There was an error adding a point')
-                //enable button
-                button.removeAttribute('disabled');
-            })
-        }
+      button.setAttribute('disabled', 'true');
+      api.addPoints(name)
+      .then((res) => {
+        return api.getUserPoints(res.data.data.name);
+      })
+      .then(res => {
+        console.log("add points was called");
+        this.point_obj.points = res.data.length;
+
+        //enable button
+        button.removeAttribute('disabled');
+      }).catch(error => {
+        toast.error('There was an error adding a point')
+        //enable button
+        button.removeAttribute('disabled');
+      })
     }
+  }
 }
 </script>
 
 <style>
-.card {
-  /* margin-left: 10px;
-  margin-right: 10px; */
+.card .card-content {
+  padding: 10px;
 }
+
 .card .name {
-  /* font-weight: 200;
-  font-size: 3em; */
+  font-weight: 200;
+  font-size: 3em;
+  text-overflow: ellipsis;
+  height: 3em;
+  margin: 0;
 }
 .card .points {
   display: block;

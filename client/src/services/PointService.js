@@ -6,7 +6,10 @@ export default {
       'name': name
     });
   },
-  getPoints() {
+  getAllUsersPoints() {
     return Api().get('/api/get/points_by_person');
-  }
+  },
+  getUserPoints(name) {
+    return Api().get(`/api/get/points_by_name/${name}`);
+  },
 }

@@ -1,12 +1,13 @@
 <template>
   <div id="app" class="container">
-    <h1>{{ team_name }} Points Board</h1>
+    <h1>{{ team_name }}<br/>Points Board</h1>
     <div class="row">
-        <Point
-          v-for="point_obj in points"
-          v-bind:point_obj="point_obj"
-          v-bind:key="point_obj._id"
-          class="col s5"/>
+      <div
+        class="col s12 m4 l3"
+        v-for="point_obj in points"
+        v-bind:key="point_obj._id">
+        <Point v-bind:point_obj="point_obj" />
+      </div>
     </div>
   </div>
 </template>
@@ -28,15 +29,19 @@ export default {
     }
   },
   mounted () {
-    this.getPoints();
+    this.getAllUsersPoints();
   },
   methods: {
-    async getPoints() {
+    async getAllUsersPoints() {
       console.log('get points was called');
-      const response = await api.getPoints();
-      this.points = response.data;
+      const response = await api.getAllUsersPoints();
+      this.points = this.sortPoints(response.data);
       console.log(this.points);
     },
+    sortPoints(users) {
+      return users.sort((a,b) =>
+          a.points - b.points);
+    }
   }
 }
 </script>
