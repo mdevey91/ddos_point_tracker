@@ -2,16 +2,16 @@
   <div id="app" class="container">
     <h1>{{ team_name }} Points Board</h1>
     <div class="row">
-      <form onSubmit="">
-        <label class="col s12 m8 l6">
-          Name:
-          <input type="text"/>
-        </label>
-        <button type="submit" class="btn waves-effect waves-light btn-large">Add User</button>
+      <form v-on:submit="createNewUser($event)" method="POST">
+        <div class="col s12 m8 l6">
+          <label for="fullname">Name:</label>
+          <input id="fullname" name="name" type="text"/>
+        </div>
+        <button type="submit" class="btn waves-effect waves-light btn-medium">Add User</button>
       </form>
     </div>
     <div class="row">
-      <table>
+      <table class="striped responsive-table">
         <thead>
         <tr>
           <th>User</th>
@@ -31,12 +31,15 @@
             <td>
               <button
                 class="btn-floating btn-small waves-effect waves-light red"
+                v-on:click="addPoint($event, user.id, user.name)"
               ><i class="material-icons">add</i></button>
               <button
                 class="btn-floating btn-small waves-effect waves-light red"
+                v-on:click="removePoint($event, user.id, user.name)"
               ><i class="material-icons">remove</i></button>
               <button
                 class="btn-floating btn-small waves-effect waves-light red"
+                v-on:click="deleteUser($event, user.id, user.name)"
               ><i class="material-icons">delete</i></button>
             </td>
           </tr>
@@ -103,11 +106,41 @@ export default {
   },
   methods: {
     async getPoints() {
-      console.log('get points was called');
-      const response = await api.getPoints();
-      this.points = response.data;
-      console.log(this.points);
+      // console.log('get points was called');
+      // const response = await api.getPoints();
+      // this.points = response.data;
+      // console.log(this.points);
     },
+    createNewUser (event) {
+      // Adds new user
+      // POST
+      event.preventDefault();
+      console.log('createNewUser clicked');
+    },
+    addPoint () {
+      // Adds new point entry with date and positive point value.
+      // POST
+      event.preventDefault();
+      const user = event.target.closest('.user').getAttribute('data-user');
+    },
+    removePoint () {
+      // Adds new point entry with date and negative point value.
+      // POST
+      event.preventDefault();
+      const user = event.target.closest('.user').getAttribute('data-user');
+    },
+    deleteUser (event, userId, userName) {
+      // Delete user and point entries.
+      // DELETE
+      event.preventDefault();
+      // const user = event.target.closest('.user');
+      // const userName = user.getAttribute('data-user');
+      // const userId = user.getAttribute('data-id');
+
+      if(confirm(`Are you sure you want to delete "${userName}"?`)) {
+        console.log('confirmed');
+      }
+    }
   }
 }
 </script>
