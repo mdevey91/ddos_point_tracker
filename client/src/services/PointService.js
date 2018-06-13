@@ -7,9 +7,12 @@ export default {
     });
   },
   getAllUsersPoints() {
-    return Api().get('/api/get/points_by_person');
+    return Api().get('/api/get/points-by-user');
   },
   getUserPoints(name) {
-    return Api().get(`/api/get/points_by_name/${name}`);
+    return Api().get(`/api/get/points-by-name/${name}`);
+  },
+  getPoints() {
+    return Api().get('/api/get/points');
   },
 }

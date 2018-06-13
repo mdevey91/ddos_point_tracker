@@ -28,7 +28,3 @@ module.exports.getUserByName = (name, callback) => {
 module.exports.addUser = (newUser, callback) => {
   newUser.save(callback);
 }
-
-module.exports.getUsersWithPoints = (callback) => {
-
-}

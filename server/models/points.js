@@ -56,14 +56,3 @@ module.exports.getDistinctPoints = (callback) => {
 		},
 	], callback)
 }
-
-module.exports.getPointsByUser = () => {
-	User.find({}, (err, users) => {
-		let user_points = [];
-		users.forEach((user) => {
-			Point.count({name: user.name}, (err, data) =>{
-				console.log(data);
-			}) 
-		})
-	})
-}

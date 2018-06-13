@@ -17,6 +17,7 @@
     "mongojs": "^2.5.0",
     "mongoose": "^5.1.1",
     "morgan": "^1.9.0",
+    "nodemon": "^1.17.5",
     "toastr": "^2.1.4"
   }
 }
